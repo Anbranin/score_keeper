@@ -1,0 +1,10 @@
+%table.table
+  %th Division
+  %th Team
+  %th Spirit Score Sheet
+  - @teams.each do |team|
+    %tr
+      %td= team.division.name
+      %td= team.name
+      %td= link_to new_team_spirit_score_sheet_path(team)
+

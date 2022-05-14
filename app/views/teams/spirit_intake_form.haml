@@ -1,0 +1,4 @@
+= form_with model: :spirit_score_sheet do |f|
+  = select_tag :division, @division.all
+  = f.select :team, options_from_collection_for_select(@teams, :id, :description)
+  = f.submit
