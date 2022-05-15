@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_14_143001) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_15_010241) do
   create_table "divisions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_143001) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "opponent"
+    t.integer "opponent_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -35,6 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_143001) do
     t.integer "division_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "saturday_completed", default: false
+    t.boolean "sunday_completed", default: false
   end
 
 end
