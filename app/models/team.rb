@@ -11,9 +11,14 @@ class Team < ApplicationRecord
     "#{name} - #{division.name}"
   end
 
-  def average_spirit_score
+  def total_spirit_score
     SpiritScoreSheet::NUMBER_FIELDS.map do |field|
       spirit_scores.map(&field)
     end.flatten.sum
+  end
+
+  def average_spirit_score
+    total_number_fields = SpiritScoreSheet::NUMBER_FIELDS.size
+    total_spirit_score.to_d / total_number_fields
   end
 end
