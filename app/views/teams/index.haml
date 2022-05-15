@@ -2,9 +2,22 @@
   %th Division
   %th Team
   %th Spirit Score Sheet
+  %th Saturday status
+  %th Sunday status
+  %th View Scores
   - @teams.each do |team|
     %tr
       %td= team.division.name
       %td= team.name
-      %td= link_to new_team_spirit_score_sheet_path(team)
-
+      %td= link_to 'Enter Spirit Scores', new_spirit_score_sheet_path(team_id: team.id)
+      %td
+        - if team.saturday_completed?
+          &#10003;
+        - else
+          incomplete
+      %td
+        - if team.sunday_completed?
+          &#10003;
+        - else
+          incomplete
+      %td= link_to 'View Scores', spirit_score_sheets_path
