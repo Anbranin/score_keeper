@@ -1,5 +1,10 @@
 class TeamsController < ApplicationController
 
+  def show
+    @team = Team.find(params[:id])
+    @spirit_scores = @team.spirit_scores
+  end
+
   def index
     @teams = Team.all
   end

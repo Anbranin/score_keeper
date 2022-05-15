@@ -1,0 +1,10 @@
+%h1 Spirit Scores for #{@team.name}
+%table.table
+  - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
+    %th= field.to_s.humanize
+  %th Comments
+  - @team.spirit_scores.each do |score|
+    %tr
+      - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
+        %td= score.send(field)
+      %td= score.comment
