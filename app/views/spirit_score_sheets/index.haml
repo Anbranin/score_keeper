@@ -1,9 +1,11 @@
-%table.table
-  %th Division
-  %th Team
-  %th Spirit Score Sheet
-  - @teams.each do |team|
-    %tr
-      %td= team.division.name
-      %td= team.name
-      %td= team.average_spirit_score
+- @divisions.each do |division, teams|
+  %h1= division.name
+  %table.table
+    %th Team
+    %th Total Spirit Score
+    %th Average Spirit Score
+    - teams.each do |team|
+      %tr
+        %td= link_to team.name, team
+        %td= team.total_spirit_score
+        %td= team.average_spirit_score
