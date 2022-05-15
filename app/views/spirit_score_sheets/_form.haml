@@ -1,4 +1,34 @@
-= form_with model: :spirit_score_sheet do |f|
-  = select_tag :division, @division.all
-  = f.select :team, options_from_collection_for_select(@teams, :id, :description)
-  = f.submit
+= form_with model: @spirit_score_sheet, local: true do |f|
+  .form-group
+    = label_tag :saturday_completed, 'Saturday completed?'
+    = check_box_tag :saturday_completed, 'true', @team.saturday_completed?
+    = label_tag :sunday_completed, 'Sunday completed?'
+    = check_box_tag :sunday_completed, 'true', @team.sunday_completed?
+  = f.hidden_field :team_id, value: @team.id
+  .form-group
+    = f.label :day
+    = f.select :day, ['Saturday','Sunday'], {}, class: 'form-control', required: true
+  .form-group
+    = f.label :opponent_id, 'Your opponent'
+    = f.select :opponent_id, options_from_collection_for_select(@opponents, :id, :name), {include_blank: 'select opponent'}, class: 'form-control'
+  .form-group
+    = f.label :rules_knowledge_and_use
+    = f.number_field :rules_knowledge_and_use, class: 'form-control', required: true, max: 4
+  .form-group
+    = f.label :fouls_and_body_contact
+    = f.number_field :fouls_and_body_contact, class: 'form-control', required: true, max: 4
+  .form-group
+    = f.label :fair_mindedness
+    = f.number_field :fair_mindedness, class: 'form-control', required: true
+  .form-group
+    = f.label :positive_attitude_and_self_control
+    = f.number_field :positive_attitude_and_self_control, class: 'form-control', required: true
+  .form-group
+    = f.label :communication
+    = f.number_field :communication, class: 'form-control', required: true
+  .form-group
+    = f.label :comment, 'Comments'
+    = f.text_area :comment, class: 'form-control'
+  .form-group
+    = f.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Done', teams_url
