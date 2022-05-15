@@ -1,0 +1,9 @@
+%table.table
+  %th Division
+  %th Team
+  %th Spirit Score Sheet
+  - @teams.each do |team|
+    %tr
+      %td= team.division.name
+      %td= team.name
+      %td= team.average_spirit_score
