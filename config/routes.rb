@@ -3,8 +3,7 @@ Rails.application.routes.draw do
 
   root 'teams#index'
 
-  resources :teams do
-    resources :spirit_score_sheet
-  end
+  resources :teams
+  resources :spirit_score_sheets
   resources :divisions
 end
