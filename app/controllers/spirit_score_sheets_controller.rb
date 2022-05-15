@@ -20,7 +20,10 @@ class SpiritScoreSheetsController < ApplicationController
   end
 
   def index
-    @teams = Team.all
+    @divisions = Team.all.group_by(&:division)
+    @divisions.each do |div, teams|
+      teams.sort_by!(&:average_spirit_score).reverse!
+    end
   end
 
   private
