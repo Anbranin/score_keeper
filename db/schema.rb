@@ -11,29 +11,31 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_05_15_010241) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "divisions", force: :cascade do |t|
-    t.string "name"
+    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "spirit_score_sheets", force: :cascade do |t|
     t.integer "team_id"
-    t.string "day"
+    t.text "day"
     t.integer "rules_knowledge_and_use"
     t.integer "fouls_and_body_contact"
     t.integer "fair_mindedness"
     t.integer "positive_attitude_and_self_control"
     t.integer "communication"
-    t.string "comment"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "opponent"
     t.integer "opponent_id"
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
+    t.text "name"
     t.integer "division_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
