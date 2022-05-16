@@ -267,6 +267,7 @@ DEPENDENCIES
   bcrypt_pbkdf
   bootsnap
   capistrano
+  capistrano-bundler
   capistrano-rails
   capybara
   debug
