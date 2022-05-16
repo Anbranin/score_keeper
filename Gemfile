@@ -62,6 +62,7 @@ group :development do
   gem "web-console"
   gem 'capistrano', require: false
   gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
