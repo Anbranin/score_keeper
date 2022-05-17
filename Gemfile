@@ -7,6 +7,7 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.3"
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'yaml_db'
 
 gem "haml"
 
@@ -70,7 +71,6 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-  gem 'yaml_db'
 end
 
 group :test do
