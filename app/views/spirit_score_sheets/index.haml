@@ -11,7 +11,7 @@
   %tbody
     - @spirit_score_sheets.each do |sheet|
       %tr
-        %td= sheet.created_at
+        %td= sheet.created_at.in_time_zone('Eastern Time (US & Canada)')
         %td= sheet.day
         %td= sheet.opponent.division.name
         %td= sheet.team.name
