@@ -1,6 +1,6 @@
 class SpiritScoreSheetsController < ApplicationController
   def new
-    today = Date.yesterday.strftime('%A')
+    today = Date.today.strftime('%A')
     @spirit_score_sheet = SpiritScoreSheet.new(day: today)
     @team = Team.find(params[:team_id])
     @opponents = Team.where(division: @team.division)

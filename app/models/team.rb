@@ -18,7 +18,7 @@ class Team < ApplicationRecord
   end
 
   def average_spirit_score
-    total_number_fields = SpiritScoreSheet::NUMBER_FIELDS.size
-    total_spirit_score.to_d / total_number_fields
+    return 0 if spirit_scores.empty?
+    (total_spirit_score.to_d / spirit_scores.count).to_f
   end
 end
