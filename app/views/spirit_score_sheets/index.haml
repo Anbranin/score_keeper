@@ -1,11 +1,22 @@
-- @divisions.each do |division, teams|
-  %h1= division.name
-  %table.table
-    %th Team
-    %th Total Spirit Score
-    %th Average Spirit Score
-    - teams.each do |team|
+%h1 Spirit Score Sheets
+%table.table
+  %th Timestamp
+  %th Day
+  %th Division
+  %th Entered by
+  %th Opponent
+  - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
+    %th= field.to_s.humanize
+  %th Comment box
+  %tbody
+    - @spirit_score_sheets.each do |sheet|
       %tr
-        %td= link_to team.name, team
-        %td= team.total_spirit_score
-        %td= team.average_spirit_score
+        %td= sheet.created_at
+        %td= sheet.day
+        %td= sheet.opponent.division.name
+        %td= sheet.team.name
+        %td= sheet.opponent.name
+        - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
+          %td= sheet.send(field)
+        %td= sheet.comment
+

@@ -1,4 +1,9 @@
 %h1 Spirit Scores for #{@team.name}
+%p
+  %b Total Spirit Score
+  = @team.total_spirit_score
+  %b Average Spirit Score
+  = @team.average_spirit_score
 %table.table
   - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
     %th= field.to_s.humanize
