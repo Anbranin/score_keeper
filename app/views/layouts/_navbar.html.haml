@@ -2,6 +2,11 @@
   = link_to 'PVI Score Tracking', root_path, class: 'navbar-brand'
   %ul.navbar-nav.mr-auto
     %li.nav-item
-      = link_to 'Spirit Scores', spirit_score_sheets_path, class: 'nav-link'
-    %li.nav-item
       = link_to 'Teams', teams_path, class: 'nav-link'
+    %li.nav-item
+      = link_to 'All Spirit Scores', spirit_score_sheets_path, class: 'nav-link'
+    - Division.all.each do |division|
+      %li.nav-item
+        = link_to "#{division.name} Spirit Averages",
+          averages_spirit_score_sheets_path(division_id: division.id),
+          class: 'nav-link'

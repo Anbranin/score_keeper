@@ -23,6 +23,11 @@ class SpiritScoreSheetsController < ApplicationController
     @spirit_score_sheets = SpiritScoreSheet.all
   end
 
+  def averages
+    @division = Division.find(params[:division_id])
+    @teams = @division.teams.joins(:spirit_score_sheets).distinct
+  end
+
   private
 
   def spirit_score_sheet_params

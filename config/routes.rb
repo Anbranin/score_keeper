@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root 'teams#index'
 
   resources :teams
-  resources :spirit_score_sheets
+  resources :spirit_score_sheets do
+    collection do
+      get :averages
+    end
+  end
   resources :divisions
 end
