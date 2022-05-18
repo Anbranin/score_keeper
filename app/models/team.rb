@@ -23,7 +23,7 @@ class Team < ApplicationRecord
   end
 
   def spirit_finish
-    @teams ||= division.teams.sort_by(&:total_spirit_score).reverse
+    @teams ||= division.teams.sort_by(&:total_average).reverse
     index = @teams.find_index(self)
     index + 1
   end
@@ -34,9 +34,17 @@ class Team < ApplicationRecord
   end
 
   def sum_of_averages
+    averages.sum
+  end
+
+  def averages
     SpiritScoreSheet::NUMBER_FIELDS.map do |field|
       average_of(field)
-    end.sum
+    end
+  end
+
+  def total_average
+    sum_of_averages / averages.size
   end
 
   def higher_than_average?(spirit_field)
