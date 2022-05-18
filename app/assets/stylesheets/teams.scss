@@ -1,0 +1,11 @@
+td {
+  &.below-average {
+    background-color: #ffcccb;
+  }
+  &.above-average {
+    background-color: #90EE90;
+  }
+  &.highest-average {
+    background-color: gold;
+  }
+}

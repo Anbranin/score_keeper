@@ -1,0 +1,15 @@
+%h1 Spirit Score Sheets for #{@division.name}
+%table.table
+  %th Team (opponent)
+  %th Spirit Finish
+  - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
+    %th= field.to_s.humanize
+  %th Total
+  %tbody
+    - @teams.each do |team|
+      %tr
+        %td= team.name
+        %td= team.spirit_finish
+        - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
+          %td{class: spirit_class(team, field)}= sprintf('%.2f', team.average_of(field))
+        %td= sprintf('%.2f', team.sum_of_averages)
