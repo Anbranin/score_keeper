@@ -12,9 +12,7 @@ class Team < ApplicationRecord
   end
 
   def total_spirit_score
-    SpiritScoreSheet::NUMBER_FIELDS.map do |field|
-      spirit_scores.map(&field)
-    end.flatten.sum
+    spirit_scores.map(&:total).compact.sum
   end
 
   def average_spirit_score
@@ -30,7 +28,8 @@ class Team < ApplicationRecord
 
   def average_of(spirit_field)
     return 0 if spirit_scores.empty?
-    spirit_scores.sum(&spirit_field).to_d / spirit_scores.size
+    scores_per_field = spirit_scores.map(&spirit_field).compact
+    scores_per_field.sum.to_d / scores_per_field.size
   end
 
   def sum_of_averages

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   root 'teams#index'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :spirit_score_sheets do
     collection do
+      get :quick_form
       get :averages
     end
   end

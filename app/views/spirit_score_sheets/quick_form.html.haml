@@ -1,0 +1,23 @@
+= form_with model: @spirit_score_sheet, local: true do |f|
+  .form-group
+    = label_tag :saturday_completed, 'Saturday completed?'
+    = check_box_tag :saturday_completed, 'true', @team.saturday_completed?
+    = label_tag :sunday_completed, 'Sunday completed?'
+    = check_box_tag :sunday_completed, 'true', @team.sunday_completed?
+  = f.hidden_field :team_id, value: @team.id
+  .form-group
+    = f.label :quick_total, 'Total', value: @spirit_score_sheet.total
+    = f.number_field :quick_total, class: 'form-control', required: true
+    %p
+      %i 
+        Only use this field for quick-entry totals. If the individual spirit scores
+        are present, this field will not be displayed.
+  .form-group
+    = f.label :day
+    = f.select :day, ['Saturday','Sunday'], {}, class: 'form-control', required: true
+  .form-group
+    = f.label :opponent_id, 'Your opponent'
+    = f.select :opponent_id, options_from_collection_for_select(@opponents, :id, :name), {include_blank: 'select opponent'}, class: 'form-control'
+  .form-group
+    = f.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Done', teams_url

@@ -9,7 +9,10 @@
     %tr
       %td= team.division.name
       %td= team.name
-      %td= link_to 'Enter Spirit Scores', new_spirit_score_sheet_path(team_id: team.id)
+      %td
+        = link_to 'Enter Spirit Scores', new_spirit_score_sheet_path(team_id: team.id)
+        |
+        = link_to 'Quick entry', quick_form_spirit_score_sheets_path(team_id: team.id)
       %td
         - if team.saturday_completed?
           &#10003;
