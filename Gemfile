@@ -7,6 +7,7 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.3"
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'devise'
 gem 'yaml_db'
 
 gem "haml"
