@@ -1,4 +1,5 @@
 class SpiritScoreSheetsController < ApplicationController
+  before_action :authenticate_user!, except: :averages
   def new
     today = Date.today.strftime('%A')
     @spirit_score_sheet = SpiritScoreSheet.new(day: today)

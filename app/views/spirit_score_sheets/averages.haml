@@ -1,16 +1,32 @@
+.row.color-key
+  .col.highest-average
+    Highest value in column
+  .col.above-average
+    Above column average
+  .col.below-average
+    Below column average
+  .col
+  .col
+  .col
+
 %h1 Spirit Score Sheets for #{@division.name}
 %table.table
-  %th Team (opponent)
+  %th Team
   %th Spirit Finish
+  %th Competition Total
   - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
     %th= field.to_s.humanize
   %th Sum of Averages
-  %th Total
+  %th Spirit Total
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.name
+        - if user_signed_in?
+          %td= link_to team.name, edit_team_url(team)
+        - else
+          %td= team.name
         %td= team.spirit_finish
+        %td= team.competition_finish
         - SpiritScoreSheet::NUMBER_FIELDS.each do |field|
           %td{class: spirit_class(team, field)}= sprintf('%.2f', team.average_of(field))
         %td= sprintf('%.2f', team.sum_of_averages)

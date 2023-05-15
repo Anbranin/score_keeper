@@ -9,3 +9,19 @@ td {
     background-color: gold;
   }
 }
+.row.color-key {
+  margin: 2rem;
+  .col {
+    display: inline-block;
+    height: 2rem;
+    &.highest-average {
+      background-color: gold;
+    }
+    &.below-average {
+      background-color: #ffcccb;
+    }
+    &.above-average {
+      background-color: #90EE90;
+    }
+  }
+}

@@ -1,18 +1,19 @@
 %table.table
   %th Division
   %th Team
-  %th Spirit Score Sheet
+  %th Enter Scores
+  %th View Scores
   %th Saturday status
   %th Sunday status
-  %th View Scores
   - @teams.each do |team|
     %tr
       %td= team.division.name
-      %td= team.name
-      %td
-        = link_to 'Enter Spirit Scores', new_spirit_score_sheet_path(team_id: team.id)
+      %td 
+        = team.name 
         |
-        = link_to 'Quick entry', quick_form_spirit_score_sheets_path(team_id: team.id)
+        = link_to 'Edit', edit_team_url(team)
+      %td= link_to 'Enter Spirit Scores', new_spirit_score_sheet_path(team_id: team.id)
+      %td= link_to 'View Scores', team
       %td
         - if team.saturday_completed?
           &#10003;
@@ -23,4 +24,3 @@
           &#10003;
         - else
           incomplete
-      %td= link_to 'View Scores', team

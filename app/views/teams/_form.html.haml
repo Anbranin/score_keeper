@@ -1,0 +1,11 @@
+= form_with model: @team, local: true do |f|
+  .form-group
+    = label_tag :saturday_completed, 'Saturday completed?'
+    = check_box_tag :saturday_completed, 'true', @team.saturday_completed?
+    = label_tag :sunday_completed, 'Sunday completed?'
+    = check_box_tag :sunday_completed, 'true', @team.sunday_completed?
+  .form-group
+    = f.label :competition_finish, class: 'control-label'
+    = f.number_field :competition_finish, class: 'form-control'
+    = f.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Back', :back
