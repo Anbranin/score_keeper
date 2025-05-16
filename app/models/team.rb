@@ -69,7 +69,7 @@ class Team < ApplicationRecord
     # only teams that have spirit score sheets
     relevant_teams = division.teams.joins(:spirit_score_sheets).distinct
     # take everyone's sum of averages
-    all_averages = division.teams.map { |team| team.average_of(spirit_field) }
+    all_averages = relevant_teams.map { |team| team.average_of(spirit_field) }
     # take the average of THAT
     average_of_averages = all_averages.sum / all_averages.size
     # is THIS team's average above that?
@@ -80,7 +80,7 @@ class Team < ApplicationRecord
     # only teams that have spirit score sheets
     relevant_teams = division.teams.joins(:spirit_score_sheets).distinct
     # take everyone's sum of averages
-    all_averages = division.teams.map { |team| team.average_of(spirit_field) }
+    all_averages = relevant_teams.map { |team| team.average_of(spirit_field) }
     # is THIS team's the highest?
     average_of(spirit_field) == all_averages.max
   end
