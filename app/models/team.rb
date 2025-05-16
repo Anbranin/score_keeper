@@ -19,17 +19,35 @@ class Team < ApplicationRecord
 
   def average_spirit_score
     return 0 if spirit_scores.empty?
+
     (total_spirit_score.to_d / spirit_scores.count).to_f
   end
 
   def spirit_finish
-    @teams ||= division.teams.sort_by(&:total_average).reverse
-    index = @teams.find_index(self)
-    index + 1
+    return nil if spirit_scores.empty?
+
+    # Cache team averages once and sort
+    scored_teams = division.teams.select { |t| t.spirit_scores.any? }
+    averages = scored_teams.map { |t| [t, t.total_average.round(3)] }
+
+    sorted = averages.sort_by { |_t, avg| -avg }
+
+    rank = 0
+    prev_score = nil
+    ranks = {}
+
+    sorted.each do |team, avg|
+      rank += 1 if avg != prev_score
+      ranks[team.id] = rank
+      prev_score = avg
+    end
+
+    ranks[id]
   end
 
   def average_of(spirit_field)
     return 0 if spirit_scores.empty?
+
     spirit_scores.sum(&spirit_field).to_d / spirit_scores.size
   end
 
