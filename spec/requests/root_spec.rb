@@ -5,6 +5,6 @@ RSpec.describe "Root page", type: :request do
     get root_path
 
     expect(response).to have_http_status(:ok)
-    expect(response.body).to include("Division")
+    expect(response.body).to include("<table")
   end
 end
