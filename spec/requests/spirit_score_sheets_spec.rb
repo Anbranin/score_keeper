@@ -1,8 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "SpiritScoreSheets", type: :request do
+  let(:user) { User.create!(email: "spirit-spec@example.com", password: "password123") }
+
   describe "GET /spirit_score_sheets/new" do
     it "renders a new spirit score form for the team" do
+      sign_in user
+
       division = Division.create!(name: "Open")
       team = Team.create!(name: "PVI", division: division)
       Team.create!(name: "Rivals", division: division)
@@ -17,6 +21,8 @@ RSpec.describe "SpiritScoreSheets", type: :request do
 
   describe "POST /spirit_score_sheets" do
     it "creates a spirit score sheet and updates completion status" do
+      sign_in user
+
       division = Division.create!(name: "Open")
       team = Team.create!(name: "PVI", division: division)
       opponent = Team.create!(name: "Rivals", division: division)
@@ -45,6 +51,8 @@ RSpec.describe "SpiritScoreSheets", type: :request do
 
   describe "GET /spirit_score_sheets" do
     it "lists saved spirit score sheets" do
+      sign_in user
+
       division = Division.create!(name: "Open")
       team = Team.create!(name: "PVI", division: division)
       opponent = Team.create!(name: "Rivals", division: division)
