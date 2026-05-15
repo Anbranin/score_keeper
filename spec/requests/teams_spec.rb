@@ -1,6 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "Teams", type: :request do
+  let(:user) { User.create!(email: "teams-spec@example.com", password: "password123") }
+
+  before do
+    sign_in user
+  end
+
   describe "GET /teams" do
     it "shows teams with score entry links and completion status" do
       division = Division.create!(name: "Mixed")
